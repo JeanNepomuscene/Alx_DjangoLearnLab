@@ -1,3 +1,5 @@
+# relationship_app/models.py
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -18,6 +20,13 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        permissions = (
+            ("can_add_book", "Can add book"),
+            ("can_change_book", "Can change book"),
+            ("can_delete_book", "Can delete book"),
+        )
+
 
 class Library(models.Model):
     name = models.CharField(max_length=150)
@@ -35,7 +44,7 @@ class Librarian(models.Model):
         return self.name
 
 
-# New UserProfile model for role-based access
+# UserProfile model for role-based access
 class UserProfile(models.Model):
     ROLE_CHOICES = [
         ('Admin', 'Admin'),
