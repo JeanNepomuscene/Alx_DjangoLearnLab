@@ -1,12 +1,12 @@
-from django.shortcuts import render
-from django.views.generic.detail import DetailView  # 👈 Correct import for ALX
-from .models import Book
-from .models import Library   # 👈 ALX checker wants this exact line
 # relationship_app/views.py
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic.detail import DetailView
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from .models import Book, Library
+
 
 # User registration view
 def register_view(request):
