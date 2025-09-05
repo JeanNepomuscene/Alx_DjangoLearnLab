@@ -5,7 +5,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
-from .models import Book, Library, UserProfile
+from .models import Book, Library, UserProfile, Author
 
 # -------------------------------
 # User Registration
@@ -58,7 +58,7 @@ def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
 # -------------------------------
-# Book Management Views (Permissions)
+# Book Management Views with Permissions
 # -------------------------------
 @permission_required('relationship_app.can_add_book', raise_exception=True)
 def add_book(request):
@@ -66,23 +66,20 @@ def add_book(request):
         title = request.POST.get('title')
         author_id = request.POST.get('author')
         if title and author_id:
-            from .models import Author
-            author = get_object_or_404(Author, id=author_id)
+            author = get_object_or_404(Author, pk=author_id)
             Book.objects.create(title=title, author=author)
             return redirect('list_books')
-    from .models import Author
     authors = Author.objects.all()
     return render(request, 'relationship_app/add_book.html', {'authors': authors})
 
 @permission_required('relationship_app.can_change_book', raise_exception=True)
 def edit_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    from .models import Author
     if request.method == 'POST':
         title = request.POST.get('title')
         author_id = request.POST.get('author')
         if title and author_id:
-            author = get_object_or_404(Author, id=author_id)
+            author = get_object_or_404(Author, pk=author_id)
             book.title = title
             book.author = author
             book.save()
