@@ -1,4 +1,4 @@
-# relationship_app/urls.py
+# LibraryProject/relationship_app/urls.py
 
 from django.urls import path
 from . import views

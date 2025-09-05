@@ -1,5 +1,6 @@
 # relationship_app/views.py
 from django.contrib.auth.decorators import permission_required
+# LibraryProject/relationship_app/views.py
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.detail import DetailView
@@ -16,7 +17,7 @@ def register_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # redirect to LoginView
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
