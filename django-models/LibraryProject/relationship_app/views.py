@@ -1,7 +1,3 @@
-# relationship_app/views.py
-from django.contrib.auth.decorators import permission_required
-# LibraryProject/relationship_app/views.py
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login
@@ -23,13 +19,16 @@ def register_view(request):
     return render(request, 'relationship_app/register.html', {'form': form})
 
 # -------------------------------
-# Books and Libraries Views
+# Function-based View: List Books
 # -------------------------------
 @login_required
 def list_books(request):
     books = Book.objects.all()
     return render(request, 'relationship_app/list_books.html', {'books': books})
 
+# -------------------------------
+# Class-based View: Library Detail
+# -------------------------------
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
@@ -60,7 +59,7 @@ def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
 # -------------------------------
-# Permission-Protected Book Views
+# Permission-Protected Book Management
 # -------------------------------
 @login_required
 @permission_required('relationship_app.can_add_book', raise_exception=True)
