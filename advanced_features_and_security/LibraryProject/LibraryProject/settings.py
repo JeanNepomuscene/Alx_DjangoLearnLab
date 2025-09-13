@@ -60,5 +60,13 @@ X_FRAME_OPTIONS = "DENY"
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
+# ===========================
+# Detect HTTPS behind a proxy/load balancer
+# ===========================
+
+# Tell Django to trust the X-Forwarded-Proto header from the proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
 
 
