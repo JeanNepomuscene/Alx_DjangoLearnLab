@@ -5,12 +5,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bookshelf',  # if you have other apps
-    'advanced_features_and_security',  # your app containing CustomUser
+    'bookshelf',  # main app containing CustomUser and Book model
 ]
 
 # Use custom user model
-AUTH_USER_MODEL = 'advanced_features_and_security.CustomUser'
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
 
 # ===========================
@@ -29,4 +28,3 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 # Force cookies to be sent only over HTTPS
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-
