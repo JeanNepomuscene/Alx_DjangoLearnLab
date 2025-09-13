@@ -8,3 +8,5 @@ INSTALLED_APPS = [
     'bookshelf',
 ]
 
+
+bookshelf.CustomUser
