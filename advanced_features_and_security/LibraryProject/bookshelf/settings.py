@@ -13,3 +13,20 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'advanced_features_and_security.CustomUser'
 
 
+# ===========================
+# Security Settings
+# ===========================
+
+# Prevent cross-site scripting (XSS)
+SECURE_BROWSER_XSS_FILTER = True
+
+# Prevent clickjacking by disallowing iframes
+X_FRAME_OPTIONS = "DENY"
+
+# Prevent content type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Force cookies to be sent only over HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
