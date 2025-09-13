@@ -12,9 +12,10 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
 
-# ===========================
-# Security Settings
-# ===========================
+DEBUG = True   # ⚠️ For development only, set to False in production
+
+ALLOWED_HOSTS = []  # Add your domain or server IP when deploying
+
 
 # Prevent cross-site scripting (XSS)
 SECURE_BROWSER_XSS_FILTER = True
@@ -28,3 +29,4 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 # Force cookies to be sent only over HTTPS
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
